@@ -23,11 +23,11 @@ export class Home extends React.Component {
     }
 
     componentDidMount() {
-        this.getCurrForecast2()
-        this.getFiveDaysForecast2()
+        this.getCurrForecast()
+        this.getFiveDaysForecast()
     }
 
-    getCurrForecast2 = async () => {
+    getCurrForecast = async () => {
         const currWeather = await weatherService.currWeatherQuery(this.state.cityCode)
         this.setState({
             temp: currWeather[0].Temperature.Value,
@@ -37,7 +37,7 @@ export class Home extends React.Component {
         })
     }
 
-    getFiveDaysForecast2 = async () => {
+    getFiveDaysForecast = async () => {
         const fiveDaysWeather = await weatherService.fiveDayForecast(this.state.cityCode)
         this.setState({
             fiveDayForecast: fiveDaysWeather.DailyForecasts
@@ -54,8 +54,8 @@ export class Home extends React.Component {
             city: convertCityName,
             cityCode: cityCode[0].Key,
         })
-        this.getCurrForecast2()
-        this.getFiveDaysForecast2()
+        this.getCurrForecast()
+        this.getFiveDaysForecast()
     }
 
     onToggleFav = () => {
